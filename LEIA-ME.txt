@@ -1,0 +1,22 @@
+ABRIGO — APP/PWA DEMONSTRATIVO
+
+Arquivos principais:
+- index.html: interface do aplicativo
+- manifest.webmanifest: dados usados na instalação
+- service-worker.js: permite cache/offline
+- icon-192.png e icon-512.png: ícones
+- arquivos JPG: fotos
+
+IMPORTANTE:
+Para instalar como aplicativo, ele precisa estar publicado em um endereço HTTPS
+(ex.: GitHub Pages ou Cloudflare Pages). Abrir index.html diretamente do computador
+serve para testar a interface, mas não ativa corretamente a instalação PWA/service worker.
+
+Android:
+Abra o endereço publicado no Chrome. Quando disponível, use “Instalar aplicativo”
+ou “Adicionar à tela inicial”.
+
+iPhone/iPad:
+Abra no Safari > Compartilhar > Adicionar à Tela de Início.
+
+O código-fonte inteiro está nesta pasta.

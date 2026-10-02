@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#5b6d5b" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <title>Abrigo — Cadastro</title>
+  <style>
+    *{box-sizing:border-box}
+    :root{
+      --bg:#f6f5f2;
+      --text:#222;
+      --muted:#666;
+      --card:#fff;
+      --line:#e7e3db;
+      --accent:#5b6d5b;
+      --accent-2:#e6efe6;
+      --shadow:0 6px 18px rgba(0,0,0,.07);
+    }
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);padding-bottom:88px}
+    header{padding:18px 16px 8px;max-width:960px;margin:auto}
+    h1{margin:0 0 6px;font-size:1.55rem}
+    .sub{margin:0;color:var(--muted);font-size:.95rem}
+    main{max-width:960px;margin:auto;padding:14px 16px 28px}
+    .summary{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+    .count{font-size:.92rem;color:#555;background:var(--accent-2);padding:9px 12px;border-radius:12px}
+    .active-filters{font-size:.82rem;color:var(--muted);text-align:right}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:.16s ease}
+    .card:hover{transform:translateY(-2px)}
+    .card img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+    .card-body{padding:10px 11px 12px}
+    .name{font-size:1.05rem;font-weight:700;margin-bottom:2px}
+    .meta{font-size:.9rem;color:var(--muted)}
+    .empty{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;text-align:center;color:var(--muted);box-shadow:var(--shadow);grid-column:1/-1}
+
+    .filter-launcher-wrap{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(to top,var(--bg) 65%,rgba(246,245,242,0));pointer-events:none}
+    .filter-launcher{pointer-events:auto;display:flex;align-items:center;justify-content:center;gap:9px;width:min(100%,520px);margin:auto;border:0;border-radius:16px;padding:13px 18px;background:#222;color:#fff;font-size:1rem;font-weight:750;box-shadow:0 10px 28px rgba(0,0,0,.18);cursor:pointer}
+    .filter-launcher .badge{min-width:24px;height:24px;border-radius:999px;background:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;padding:0 6px}
+
+    dialog{border:0;padding:0;box-shadow:0 18px 60px rgba(0,0,0,.28)}
+    dialog::backdrop{background:rgba(0,0,0,.45)}
+    #animalModal{border-radius:18px;width:min(92vw,560px)}
+    #filterDialog{width:100%;max-width:100%;margin:auto 0 0;border-radius:24px 24px 0 0;max-height:82vh}
+    #filterDialog[open]{animation:slideUp .18s ease-out}
+    @keyframes slideUp{from{transform:translateY(30px);opacity:.7}to{transform:translateY(0);opacity:1}}
+
+    .sheet img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+    .sheet-body{padding:16px}
+    .sheet h2{margin:0 0 4px;font-size:1.4rem}
+    .sheet .line{margin:8px 0;color:#444}
+    .pill{display:inline-block;background:#efefef;border-radius:999px;padding:5px 9px;margin:4px 5px 0 0;font-size:.85rem}
+    .section{margin-top:14px;padding-top:12px;border-top:1px solid #eee}
+    .section h3{margin:0 0 8px;font-size:1rem}
+    .desc{margin-top:13px;padding-top:12px;border-top:1px solid #eee;font-style:italic}
+    .internal{background:#faf9f6;border:1px dashed #d8d3ca;border-radius:12px;padding:10px 12px;color:#555;font-size:.92rem}
+    .internal .small{display:block;color:#777;font-size:.8rem;margin-bottom:4px}
+    .close{width:100%;margin-top:16px;border:0;border-radius:12px;padding:11px 14px;font-weight:700;background:#222;color:#fff;cursor:pointer}
+
+    .filter-sheet{padding:8px 16px calc(18px + env(safe-area-inset-bottom))}
+    .grabber{width:42px;height:5px;border-radius:999px;background:#d1cec7;margin:2px auto 14px}
+    .filter-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+    .filter-head h2{margin:0;font-size:1.25rem}
+    .clear{border:0;background:transparent;color:var(--accent);font-weight:700;padding:7px;cursor:pointer}
+    .filter-group{padding:14px 0;border-top:1px solid #eee}
+    .filter-group:first-of-type{border-top:0}
+    .label{font-size:.82rem;color:var(--muted);margin-bottom:9px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+    .btn-row{display:flex;flex-wrap:wrap;gap:8px}
+    .btn{border:1px solid #d8d3ca;background:#fff;color:var(--text);border-radius:999px;padding:9px 13px;font-size:.92rem;cursor:pointer}
+    .btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    select{width:100%;border:1px solid #d8d3ca;border-radius:12px;padding:11px 12px;background:#fff;font-size:.96rem}
+    .apply{width:100%;margin-top:8px;border:0;border-radius:14px;padding:12px 14px;font-weight:750;background:#222;color:#fff;cursor:pointer}
+
+    footer{max-width:960px;margin:auto;padding:0 16px 26px;color:#777;font-size:.8rem}
+    @media (min-width:700px){
+      .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      #filterDialog{width:min(560px,92vw);max-width:560px;margin:auto;border-radius:24px;max-height:88vh}
+      .filter-launcher-wrap{padding-left:24px;padding-right:24px}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Abrigo — cadastro de animais</h1>
+  <p class="sub">Consulta simples pelo celular.</p>
+  <button id="installApp" type="button" style="display:none;margin-top:10px;border:0;border-radius:12px;padding:9px 12px;background:#5b6d5b;color:#fff;font-weight:700;cursor:pointer">Instalar aplicativo</button>
+  <div id="iosInstallHint" style="display:none;margin-top:8px;color:#666;font-size:.88rem">No iPhone/iPad: abra no Safari, toque em Compartilhar e escolha “Adicionar à Tela de Início”.</div>
+</header>
+<main>
+  <div class="summary">
+    <div class="count" id="count"></div>
+    <div class="active-filters" id="activeFilters">Sem filtros</div>
+  </div>
+  <section class="grid" id="grid"></section>
+</main>
+<footer>Versão PWA demonstrativa. Alguns dados são usados apenas como exemplo.</footer>
+
+<div class="filter-launcher-wrap">
+  <button class="filter-launcher" id="openFilters" type="button">
+    Filtrar e ordenar <span class="badge" id="filterBadge">0</span>
+  </button>
+</div>
+
+<dialog id="animalModal"><div class="sheet" id="sheet"></div></dialog>
+<dialog id="filterDialog">
+  <div class="filter-sheet">
+    <div class="grabber"></div>
+    <div class="filter-head">
+      <h2>Filtros e ordenação</h2>
+      <button class="clear" id="clearFilters" type="button">Limpar</button>
+    </div>
+
+    <div class="filter-group">
+      <div class="label">Espécie</div>
+      <div class="btn-row" id="speciesFilters"></div>
+    </div>
+
+    <div class="filter-group">
+      <div class="label">Sexo</div>
+      <div class="btn-row" id="sexFilters"></div>
+    </div>
+
+    <div class="filter-group">
+      <div class="label">Idade</div>
+      <div class="btn-row" id="ageFilters"></div>
+    </div>
+
+    <div class="filter-group">
+      <label class="label" for="sortSelect" style="display:block">Ordenar por</label>
+      <select id="sortSelect">
+        <option value="name-asc">Nome (A–Z)</option>
+        <option value="age-asc">Idade (menor para maior)</option>
+        <option value="age-desc">Idade (maior para menor)</option>
+        <option value="sex-asc">Sexo</option>
+      </select>
+    </div>
+
+    <button class="apply" id="applyFilters" type="button">Ver resultados</button>
+  </div>
+</dialog>
+
+<script>
+const animals = [
+  {
+    name:'Vicky', image:'Vicky.JPG',
+    publicData:{species:'Gato', sex:'Fêmea', age:7, neutered:'Sim', dewormed:'Sim', coat:'Branca com manchas tigradas/cinzentas e creme', desc:'Determinada e independente'},
+    internalData:{code:'A-001', area:'Gatil 1', notes:'Exemplo de campo interno.'}
+  },
+  {
+    name:'Dorothy', image:'Dorothy.JPG',
+    publicData:{species:'Gato', sex:'Fêmea', age:4, neutered:'Sim', dewormed:'Sim', coat:'Escama de tartaruga, pelo longo', desc:'Sapeca e maluquinha'},
+    internalData:{code:'A-002', area:'Gatil 1', notes:'Exemplo de campo interno.'}
+  },
+  {
+    name:'Nina', image:'Nina.JPG',
+    publicData:{species:'Gato', sex:'Fêmea', age:5, neutered:'Sim', dewormed:'Sim', coat:'Tricolor, pelo longo', desc:'Carinhosa e dócil'},
+    internalData:{code:'A-003', area:'Gatil 2', notes:'Exemplo de campo interno.'}
+  },
+  {
+    name:'Sabrina', image:'Sabrina.JPG',
+    publicData:{species:'Gato', sex:'Fêmea', age:6, neutered:'Sim', dewormed:'Sim', coat:'Preta, pelo curto', desc:'Forte e temperamental'},
+    internalData:{code:'A-004', area:'Gatil 2', notes:'Exemplo de campo interno.'}
+  },
+  {
+    name:'Melody', image:'Melody.JPG',
+    publicData:{species:'Gato', sex:'Fêmea', age:8, neutered:'Sim', dewormed:'Sim', coat:'Escama de tartaruga, pelo curto', desc:'Ágil e arisca'},
+    internalData:{code:'A-005', area:'Gatil 3', notes:'Exemplo de campo interno.'}
+  },
+  {
+    name:'Leo', image:'Leo.JPG',
+    publicData:{species:'Cão', sex:'Macho', age:10, neutered:'Não informado', dewormed:'Não informado', coat:'Caramelo, pelo curto', desc:'Fiel e companheiro'},
+    internalData:{code:'A-006', area:'Canil', notes:'Exemplo de campo interno.'}
+  }
+];
+
+const grid = document.getElementById('grid');
+const animalModal = document.getElementById('animalModal');
+const sheet = document.getElementById('sheet');
+const filterDialog = document.getElementById('filterDialog');
+const sortSelect = document.getElementById('sortSelect');
+const count = document.getElementById('count');
+const activeFilters = document.getElementById('activeFilters');
+const filterBadge = document.getElementById('filterBadge');
+const speciesFilters = document.getElementById('speciesFilters');
+const sexFilters = document.getElementById('sexFilters');
+const ageFilters = document.getElementById('ageFilters');
+
+const state = { species:'Todos', sex:'Todos', age:'Todas', sort:'name-asc' };
+
+function ageLabel(age){ return `aprox. ${age} ${age === 1 ? 'ano' : 'anos'}`; }
+function ageBand(age){
+  if(age <= 5) return 'Até 5 anos';
+  if(age <= 8) return '6 a 8 anos';
+  return '9 anos ou mais';
+}
+
+function openAnimal(animal){
+  const p = animal.publicData;
+  const i = animal.internalData;
+  const neuterLabel = p.sex === 'Macho' ? 'Castrado' : 'Castrada';
+  const dewormLabel = p.sex === 'Macho' ? 'Vermifugado' : 'Vermifugada';
+  sheet.innerHTML = `
+    <img src="${animal.image}" alt="${animal.name}">
+    <div class="sheet-body">
+      <h2>${animal.name}</h2>
+      <div class="line">${p.species} • ${p.sex} • ${ageLabel(p.age)}</div>
+      <div><span class="pill">${neuterLabel}: ${p.neutered}</span><span class="pill">${dewormLabel}: ${p.dewormed}</span></div>
+      <div class="section">
+        <h3>Dados públicos</h3>
+        <div class="line"><strong>Pelagem:</strong> ${p.coat}</div>
+        ${p.desc ? `<div class="desc">“${p.desc}”</div>` : ''}
+      </div>
+      <div class="section">
+        <h3>Dados internos</h3>
+        <div class="internal">
+          <span class="small">Exemplo de separação entre uso interno e eventual vitrine pública.</span>
+          <div><strong>Código:</strong> ${i.code}</div>
+          <div><strong>Local:</strong> ${i.area}</div>
+          <div><strong>Obs. interna:</strong> ${i.notes}</div>
+        </div>
+      </div>
+      <button class="close" onclick="animalModal.close()">Fechar</button>
+    </div>`;
+  animalModal.showModal();
+}
+
+function createFilterButtons(container, options, key){
+  container.innerHTML = '';
+  options.forEach(option => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'btn' + (state[key] === option ? ' active' : '');
+    btn.textContent = option;
+    btn.addEventListener('click', () => {
+      state[key] = option;
+      renderFilters();
+      renderGrid();
+    });
+    container.appendChild(btn);
+  });
+}
+
+function renderFilters(){
+  createFilterButtons(speciesFilters, ['Todos','Gato','Cão'], 'species');
+  createFilterButtons(sexFilters, ['Todos','Fêmea','Macho'], 'sex');
+  createFilterButtons(ageFilters, ['Todas','Até 5 anos','6 a 8 anos','9 anos ou mais'], 'age');
+  sortSelect.value = state.sort;
+  updateFilterSummary();
+}
+
+function updateFilterSummary(){
+  const items = [];
+  if(state.species !== 'Todos') items.push(state.species);
+  if(state.sex !== 'Todos') items.push(state.sex);
+  if(state.age !== 'Todas') items.push(state.age);
+  const sortIsDefault = state.sort === 'name-asc';
+  const activeCount = items.length + (sortIsDefault ? 0 : 1);
+  filterBadge.textContent = activeCount;
+  activeFilters.textContent = items.length ? items.join(' • ') : 'Sem filtros';
+}
+
+function getVisibleAnimals(){
+  let list = animals.filter(animal => {
+    const p = animal.publicData;
+    const speciesOk = state.species === 'Todos' || p.species === state.species;
+    const sexOk = state.sex === 'Todos' || p.sex === state.sex;
+    const ageOk = state.age === 'Todas' || ageBand(p.age) === state.age;
+    return speciesOk && sexOk && ageOk;
+  });
+
+  list.sort((a,b) => {
+    const pa = a.publicData, pb = b.publicData;
+    switch(state.sort){
+      case 'age-asc': return pa.age - pb.age || a.name.localeCompare(b.name,'pt-BR');
+      case 'age-desc': return pb.age - pa.age || a.name.localeCompare(b.name,'pt-BR');
+      case 'sex-asc': return pa.sex.localeCompare(pb.sex,'pt-BR') || a.name.localeCompare(b.name,'pt-BR');
+      case 'name-asc':
+      default: return a.name.localeCompare(b.name,'pt-BR');
+    }
+  });
+  return list;
+}
+
+function renderGrid(){
+  const visible = getVisibleAnimals();
+  grid.innerHTML = '';
+  count.textContent = `${visible.length} ${visible.length === 1 ? 'animal encontrado' : 'animais encontrados'}`;
+  updateFilterSummary();
+
+  if(!visible.length){
+    const empty = document.createElement('div');
+    empty.className = 'empty';
+    empty.textContent = 'Nenhum animal encontrado com os filtros selecionados.';
+    grid.appendChild(empty);
+    return;
+  }
+
+  visible.forEach(animal => {
+    const p = animal.publicData;
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.innerHTML = `<img src="${animal.image}" alt="${animal.name}"><div class="card-body"><div class="name">${animal.name}</div><div class="meta">${p.sex} • ${ageLabel(p.age)}</div></div>`;
+    el.addEventListener('click',()=>openAnimal(animal));
+    grid.appendChild(el);
+  });
+}
+
+document.getElementById('openFilters').addEventListener('click', () => filterDialog.showModal());
+document.getElementById('applyFilters').addEventListener('click', () => filterDialog.close());
+document.getElementById('clearFilters').addEventListener('click', () => {
+  state.species = 'Todos';
+  state.sex = 'Todos';
+  state.age = 'Todas';
+  state.sort = 'name-asc';
+  renderFilters();
+  renderGrid();
+});
+sortSelect.addEventListener('change', (e) => {
+  state.sort = e.target.value;
+  renderGrid();
+  updateFilterSummary();
+});
+animalModal.addEventListener('click', e => { if(e.target === animalModal) animalModal.close(); });
+filterDialog.addEventListener('click', e => { if(e.target === filterDialog) filterDialog.close(); });
+
+
+let deferredInstallPrompt = null;
+const installButton = document.getElementById('installApp');
+const iosInstallHint = document.getElementById('iosInstallHint');
+
+window.addEventListener('beforeinstallprompt', (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  installButton.style.display = 'inline-block';
+});
+
+installButton.addEventListener('click', async () => {
+  if (!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  installButton.style.display = 'none';
+});
+
+window.addEventListener('appinstalled', () => {
+  installButton.style.display = 'none';
+});
+
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+if (isIOS && !isStandalone) {
+  iosInstallHint.style.display = 'block';
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js');
+  });
+}
+
+renderFilters();
+renderGrid();
+</script>
+</body>
+</html>
