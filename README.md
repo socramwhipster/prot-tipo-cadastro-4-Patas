@@ -1,16 +1,20 @@
-# Amor de Quatro Patas — V3.1
+# Amor de Quatro Patas — V3.2
 
-Versão com duas portas de acesso:
+Versão conectada ao Supabase com:
 
-- **Visitante:** consulta somente `animais_publicos`, portanto vê apenas animais ativos e campos públicos.
-- **Login:** autenticação pelo Supabase; usuários ativos em `perfis` com papel `admin` ou `editor` consultam a tabela completa `animais`.
+- acesso Visitante ou Login;
+- consulta pública restrita à view `animais_publicos`;
+- área interna para admin/editor;
+- cadastro de novo animal pelo celular;
+- edição dos dados internos;
+- 1 foto obrigatória em novos cadastros;
+- compressão/redimensionamento automático da foto antes do upload;
+- armazenamento da foto no bucket privado `fotos-animais`;
+- URLs das fotos geradas por assinatura temporária;
+- proteção contra sobrescrever uma ficha alterada por outra pessoa (controle por `versao`);
+- observações livres com links clicáveis na visualização;
+- código de 6 dígitos derivado do `id` do banco.
 
-Nesta versão ainda não há cadastro/edição pelo aplicativo. O objetivo é validar autenticação, diferenciação de permissões e visualização pública/interna.
+## Segurança
 
-## Próximas etapas
-
-1. Cadastro e edição pelo celular.
-2. Compressão de foto antes do upload.
-3. Upload de uma foto por animal no Storage.
-4. Controle de concorrência de edição.
-5. Relatório simples e relatório detalhado em PDF.
+A chave Supabase presente no HTML é a Publishable Key. Não inserir Secret Key, service_role ou senha do banco no repositório.
