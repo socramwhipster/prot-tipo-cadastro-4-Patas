@@ -1,4 +1,4 @@
-# Amor de Quatro Patas — V3.4
+# Amor de Quatro Patas — V3.4.4
 
 Principais mudanças:
 - visitante não vê mensagens técnicas de conexão nem rodapé interno;
@@ -17,3 +17,7 @@ V3.4.1: oculta mensagens técnicas no modo visitante e adiciona botão destacado
 ## V3.4.2
 - Área visitante não exibe contagem total de animais nem resumo estatístico/listagem.
 - Resumos quantitativos ficam restritos à área interna.
+
+
+## V3.4.4
+Atualiza o service worker para um cache novo e usa estratégia network-first para navegação/HTML, reduzindo o risco de a PWA instalada continuar exibindo uma versão antiga do app.
