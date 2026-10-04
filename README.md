@@ -12,3 +12,8 @@ Exemplo para contar adoções em um período: Situação = Adotado + Data da sa�
 
 
 V3.4.1: oculta mensagens técnicas no modo visitante e adiciona botão destacado Relatórios / PDF na área interna.
+
+
+## V3.4.2
+- Área visitante não exibe contagem total de animais nem resumo estatístico/listagem.
+- Resumos quantitativos ficam restritos à área interna.
