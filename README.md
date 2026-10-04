@@ -1,17 +1,11 @@
-# Amor de Quatro Patas — V3.3
+# Amor de Quatro Patas — V3.4
 
-Atualização da PWA de cadastro de animais.
+Principais mudanças:
+- visitante não vê mensagens técnicas de conexão nem rodapé interno;
+- relatórios disponíveis apenas para Editor/Admin;
+- Relatório Simples: foto pequena + dados públicos;
+- Relatório Detalhado: ficha completa;
+- filtros de relatório por espécie, sexo, situação, internação e intervalo de Data da saída;
+- relatórios abrem em formato A4 e usam a caixa de impressão do navegador para salvar como PDF ou imprimir.
 
-## Mudanças desta versão
-- Ordem padrão por código decrescente: animais cadastrados mais recentemente aparecem primeiro.
-- Opção separada **Tirar foto**, que solicita a câmera traseira no celular quando suportado pelo navegador.
-- Opção **Escolher imagem** para usar uma foto já existente.
-- A foto continua sendo comprimida/redimensionada antes do upload para o Supabase Storage.
-- Manifest e service worker atualizados para V3.3, com navegação usando atualização pela rede quando disponível.
-
-## Estrutura
-- GitHub Pages: front-end/PWA.
-- Supabase: banco, autenticação e Storage.
-
-Projeto e concepção: Bruce William
-Desenvolvido com apoio do ChatGPT.
+Exemplo para contar adoções em um período: Situação = Adotado + Data da saída (de/até). O total aparece no cabeçalho do relatório.
