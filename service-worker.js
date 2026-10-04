@@ -1,4 +1,4 @@
-const CACHE = 'amor4patas-v3.4';
+const CACHE = 'amor4patas-v3.4.1';
 const STATIC = ['./','./index.html','./manifest.webmanifest','./amor de 4 patas.jpg','./icon-192.png','./icon-512.png'];
 self.addEventListener('install', e => { self.skipWaiting(); e.waitUntil(caches.open(CACHE).then(c => c.addAll(STATIC))); });
 self.addEventListener('activate', e => { e.waitUntil((async()=>{ for (const k of await caches.keys()) if(k!==CACHE) await caches.delete(k); await self.clients.claim(); })()); });

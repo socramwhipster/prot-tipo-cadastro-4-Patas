@@ -9,3 +9,6 @@ Principais mudanças:
 - relatórios abrem em formato A4 e usam a caixa de impressão do navegador para salvar como PDF ou imprimir.
 
 Exemplo para contar adoções em um período: Situação = Adotado + Data da saída (de/até). O total aparece no cabeçalho do relatório.
+
+
+V3.4.1: oculta mensagens técnicas no modo visitante e adiciona botão destacado Relatórios / PDF na área interna.
