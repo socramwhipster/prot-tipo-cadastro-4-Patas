@@ -1,16 +1,16 @@
-# Amor de Quatro Patas — V3 (consulta Supabase)
+# Amor de Quatro Patas — V3.1
 
-Nesta versão o app:
-- é hospedável no GitHub Pages;
-- consulta a tabela `public.animais` do Supabase;
-- usa a Publishable Key pública (apropriada para frontend);
-- respeita o RLS configurado no Supabase;
-- ainda NÃO permite login, cadastro, edição nem upload de fotos;
-- mantém o formulário antigo apenas como base visual para a próxima etapa.
+Versão com duas portas de acesso:
 
-## Teste
-Publique todos os arquivos desta pasta na raiz do GitHub Pages e abra o app.
-Se a conexão estiver correta, aparecerá `Banco online conectado`. Como a tabela pode estar vazia, é normal aparecer `Nenhum animal encontrado no banco.`
+- **Visitante:** consulta somente `animais_publicos`, portanto vê apenas animais ativos e campos públicos.
+- **Login:** autenticação pelo Supabase; usuários ativos em `perfis` com papel `admin` ou `editor` consultam a tabela completa `animais`.
 
-## Segurança
-Nunca coloque no GitHub a senha do banco, `service_role`, `sb_secret_...` ou qualquer Secret Key. A `sb_publishable_...` usada no frontend é pública por desenho; a segurança é feita pelas políticas RLS.
+Nesta versão ainda não há cadastro/edição pelo aplicativo. O objetivo é validar autenticação, diferenciação de permissões e visualização pública/interna.
+
+## Próximas etapas
+
+1. Cadastro e edição pelo celular.
+2. Compressão de foto antes do upload.
+3. Upload de uma foto por animal no Storage.
+4. Controle de concorrência de edição.
+5. Relatório simples e relatório detalhado em PDF.

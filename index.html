@@ -8,119 +8,80 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Amor de Quatro Patas — Cadastro</title>
 <style>
-*{box-sizing:border-box} :root{--bg:#f7f3ed;--card:#fff;--ink:#2b2926;--muted:#736d66;--line:#e4dcd2;--red:#8d1824;--red2:#b83b49;--soft:#f2e5e6;--green:#e4efe7;--shadow:0 7px 22px rgba(48,33,22,.09)}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);padding-bottom:90px;min-height:100vh}
-body:before{content:"";position:fixed;inset:0;background:url('amor de 4 patas.jpg') center 58%/min(72vw,620px) auto no-repeat;opacity:.035;pointer-events:none;z-index:-1}
-header{max-width:980px;margin:auto;padding:14px 16px 8px}.brand{display:flex;gap:12px;align-items:center}.brand img{width:78px;height:78px;object-fit:contain;border-radius:14px;background:#fff;box-shadow:var(--shadow)}
-h1{font-size:1.34rem;margin:0 0 4px}.sub{margin:0;color:var(--muted);font-size:.9rem}.tag{display:inline-block;margin-top:7px;font-size:.72rem;background:var(--soft);color:var(--red);padding:4px 8px;border-radius:999px;font-weight:750}
-main{max-width:980px;margin:auto;padding:10px 16px 28px}.toolbar{display:flex;gap:8px;align-items:center;margin:8px 0 12px}.search{flex:1;border:1px solid var(--line);background:#fff;border-radius:14px;padding:11px 12px;font-size:1rem}.new{border:0;border-radius:14px;background:var(--red);color:white;padding:11px 13px;font-weight:800;cursor:pointer}.summary{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:12px}.count{font-size:.88rem;color:#554f49}.filtersText{font-size:.78rem;color:var(--muted);text-align:right}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer}.card img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}.cardBody{padding:10px 11px 12px}.name{font-weight:800;font-size:1rem}.meta{font-size:.84rem;color:var(--muted);margin-top:2px}.code{font-variant-numeric:tabular-nums;letter-spacing:.04em}.status{display:inline-block;margin-top:7px;font-size:.72rem;padding:4px 7px;border-radius:999px;background:#eee}.status.internado{background:#fff0c9}.status.obito{background:#eee;color:#666}.status.abrigo{background:var(--green)}
-.empty{grid-column:1/-1;text-align:center;padding:24px;background:#fff;border:1px solid var(--line);border-radius:18px;color:var(--muted)}
+*{box-sizing:border-box}:root{--bg:#f7f3ed;--card:#fff;--ink:#2b2926;--muted:#736d66;--line:#e4dcd2;--red:#8d1824;--soft:#f2e5e6;--green:#e4efe7;--shadow:0 7px 22px rgba(48,33,22,.09)}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}body:before{content:"";position:fixed;inset:0;background:url('amor de 4 patas.jpg') center 58%/min(72vw,620px) auto no-repeat;opacity:.035;pointer-events:none;z-index:-1}
+.hidden{display:none!important}.center{max-width:620px;margin:auto;padding:24px 18px}.welcome{min-height:100vh;display:grid;place-items:center}.welcomeCard{width:100%;background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:var(--shadow);text-align:center}.welcomeLogo{width:150px;max-width:55vw;object-fit:contain}.welcome h1{margin:10px 0 4px}.welcome p{color:var(--muted);margin:6px 0 18px}.choice{display:grid;gap:10px}.bigBtn{border:0;border-radius:16px;padding:14px 16px;font-size:1rem;font-weight:800;cursor:pointer}.bigBtn.primary{background:var(--red);color:#fff}.bigBtn.dark{background:#24211f;color:#fff}.smallNote{font-size:.78rem;color:var(--muted);margin-top:12px}.loginBox{text-align:left;margin-top:16px;border-top:1px solid var(--line);padding-top:16px}.field{margin:10px 0}.field label{display:block;font-size:.8rem;font-weight:800;margin-bottom:5px}.field input{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px;font:inherit;background:#fff}.loginMsg{font-size:.82rem;margin-top:8px;color:var(--red)}
+#app{padding-bottom:90px}header{max-width:980px;margin:auto;padding:14px 16px 8px}.brand{display:flex;gap:12px;align-items:center}.brand img{width:78px;height:78px;object-fit:contain;border-radius:14px;background:#fff;box-shadow:var(--shadow)}h1{font-size:1.34rem;margin:0 0 4px}.sub{margin:0;color:var(--muted);font-size:.9rem}.tag{display:inline-block;margin-top:7px;font-size:.72rem;background:var(--soft);color:var(--red);padding:4px 8px;border-radius:999px;font-weight:750}.topActions{margin-left:auto;display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}.miniBtn{border:0;border-radius:12px;padding:9px 10px;font-weight:800;cursor:pointer;background:#eee9e4;color:#333}.miniBtn.red{background:var(--red);color:#fff}
+main{max-width:980px;margin:auto;padding:10px 16px 28px}.toolbar{display:flex;gap:8px;align-items:center;margin:8px 0 12px}.search{flex:1;border:1px solid var(--line);background:#fff;border-radius:14px;padding:11px 12px;font-size:1rem}.summary{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:12px}.count{font-size:.88rem;color:#554f49}.filtersText{font-size:.78rem;color:var(--muted);text-align:right}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer}.card img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}.cardBody{padding:10px 11px 12px}.name{font-weight:800;font-size:1rem}.meta{font-size:.84rem;color:var(--muted);margin-top:2px}.code{font-variant-numeric:tabular-nums;letter-spacing:.04em}.status{display:inline-block;margin-top:7px;font-size:.72rem;padding:4px 7px;border-radius:999px;background:var(--green)}.empty{grid-column:1/-1;text-align:center;padding:24px;background:#fff;border:1px solid var(--line);border-radius:18px;color:var(--muted)}
 .bottom{position:fixed;z-index:20;left:0;right:0;bottom:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(to top,var(--bg) 66%,rgba(247,243,237,0));pointer-events:none}.filterBtn{pointer-events:auto;display:block;width:min(100%,520px);margin:auto;border:0;border-radius:16px;padding:13px;background:#252321;color:#fff;font-size:1rem;font-weight:800;box-shadow:0 10px 28px rgba(0,0,0,.18)}
-dialog{border:0;padding:0;box-shadow:0 18px 60px rgba(0,0,0,.3)}dialog::backdrop{background:rgba(0,0,0,.48)}#animalModal,#formModal{border-radius:20px;width:min(94vw,600px);max-height:92vh}#filterModal{width:100%;max-width:100%;margin:auto 0 0;border-radius:24px 24px 0 0;max-height:82vh}.sheetImg{width:100%;aspect-ratio:16/10;object-fit:contain;display:block;background:#f1eee9}.sheet{padding:16px}.sheet h2{margin:0 0 3px}.line{margin:7px 0;color:#4f4a45}.pills{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.pill{background:#efede9;border-radius:999px;padding:5px 8px;font-size:.82rem}.obs{white-space:pre-wrap;background:#faf7f2;border:1px solid var(--line);border-radius:12px;padding:11px;margin-top:12px}.actions{display:flex;gap:8px;margin-top:14px}.btn{border:0;border-radius:12px;padding:10px 12px;font-weight:800;cursor:pointer}.btn.primary{background:var(--red);color:#fff}.btn.dark{background:#24211f;color:#fff}.btn.light{background:#eee9e4;color:#333}.actions .btn{flex:1}.navRow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.navRow .btn{width:100%}.exitWrap.hidden{display:none}
-.form{padding:16px;overflow:auto}.form h2{margin:0 0 4px}.help{color:var(--muted);font-size:.82rem;margin:0 0 14px}.field{margin:11px 0}.field label{display:block;font-size:.8rem;font-weight:800;color:#554f49;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 11px;font:inherit;background:#fff}.field textarea{min-height:125px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:9px}.req:after{content:" *";color:var(--red)}.fileHint{font-size:.75rem;color:var(--muted);margin-top:5px}.preview{display:none;width:100%;max-height:220px;object-fit:contain;background:#f1eee9;border-radius:12px;margin-top:7px}.toggles{display:grid;grid-template-columns:1fr 1fr;gap:9px}.toggleBox{border:1px solid var(--line);border-radius:12px;padding:9px;background:#fff}.toggleBox label{margin:0 0 6px}.toggleBox select{padding:8px}.formActions{display:flex;gap:8px;position:sticky;bottom:-16px;background:linear-gradient(to top,#fff 78%,rgba(255,255,255,0));padding:16px 0 2px;margin-top:8px}.formActions .btn{flex:1}
-.filterSheet{padding:10px 16px 20px}.grab{width:42px;height:5px;border-radius:99px;background:#d3ccc4;margin:0 auto 14px}.fg{padding:12px 0;border-top:1px solid #eee}.fg:first-of-type{border-top:0}.flabel{font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:800;margin-bottom:8px}.chips{display:flex;flex-wrap:wrap;gap:7px}.chip{border:1px solid #d8d0c7;background:#fff;border-radius:999px;padding:8px 11px}.chip.active{background:var(--red);color:#fff;border-color:var(--red)}.full{width:100%}
-footer{max-width:980px;margin:auto;padding:0 16px 24px;color:#817970;font-size:.76rem}@media(min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}#filterModal{width:min(580px,94vw);max-width:580px;margin:auto;border-radius:24px}}
-@media print{.bottom,.toolbar,.summary,footer,.new,.filterBtn{display:none!important}body:before{display:none}.grid{grid-template-columns:repeat(3,1fr);gap:8px}.card{box-shadow:none;break-inside:avoid}.card img{aspect-ratio:4/3}.cardBody{padding:7px}.brand img{width:52px;height:52px}.tag{display:none}body{padding:0;background:#fff}}
+dialog{border:0;padding:0;box-shadow:0 18px 60px rgba(0,0,0,.3)}dialog::backdrop{background:rgba(0,0,0,.48)}#animalModal{border-radius:20px;width:min(94vw,600px);max-height:92vh}#filterModal{width:100%;max-width:100%;margin:auto 0 0;border-radius:24px 24px 0 0;max-height:82vh}.sheetImg{width:100%;aspect-ratio:16/10;object-fit:contain;display:block;background:#f1eee9}.sheet{padding:16px}.sheet h2{margin:0 0 3px}.line{margin:7px 0;color:#4f4a45}.pills{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.pill{background:#efede9;border-radius:999px;padding:5px 8px;font-size:.82rem}.obs{white-space:pre-wrap;background:#faf7f2;border:1px solid var(--line);border-radius:12px;padding:11px;margin-top:12px}.actions{display:flex;gap:8px;margin-top:14px}.btn{border:0;border-radius:12px;padding:10px 12px;font-weight:800;cursor:pointer}.btn.dark{background:#24211f;color:#fff}.btn.light{background:#eee9e4;color:#333}.actions .btn{flex:1}.navRow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.navRow .btn{width:100%}.filterSheet{padding:10px 16px 20px}.grab{width:42px;height:5px;border-radius:99px;background:#d3ccc4;margin:0 auto 14px}.fg{padding:12px 0;border-top:1px solid #eee}.fg:first-of-type{border-top:0}.flabel{font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:800;margin-bottom:8px}.chips{display:flex;flex-wrap:wrap;gap:7px}.chip{border:1px solid #d8d0c7;background:#fff;border-radius:999px;padding:8px 11px}.chip.active{background:var(--red);color:#fff;border-color:var(--red)}.full{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff}footer{max-width:980px;margin:auto;padding:0 16px 24px;color:#817970;font-size:.76rem}
+@media(min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}#filterModal{width:min(580px,94vw);max-width:580px;margin:auto;border-radius:24px}}
 </style>
-</head><body>
-<header><div class="brand"><img src="amor de 4 patas.jpg" alt="Logo Amor de Quatro Patas"><div><h1>Cadastro de Animais</h1><p class="sub">Amor de Quatro Patas • controle simples pelo celular</p><span class="tag">V3 • BANCO ONLINE • CONSULTA</span></div></div></header>
+</head>
+<body>
+<section id="welcome" class="welcome">
+  <div class="center">
+    <div class="welcomeCard">
+      <img class="welcomeLogo" src="amor de 4 patas.jpg" alt="Logo Amor de Quatro Patas">
+      <h1>Cadastro de Animais</h1>
+      <p>Escolha como deseja acessar o sistema.</p>
+      <div class="choice">
+        <button id="visitorBtn" class="bigBtn primary">Entrar como visitante</button>
+        <button id="showLoginBtn" class="bigBtn dark">Entrar com login</button>
+      </div>
+      <div id="loginBox" class="loginBox hidden">
+        <div class="field"><label>E-mail</label><input id="loginEmail" type="email" autocomplete="username"></div>
+        <div class="field"><label>Senha</label><input id="loginPassword" type="password" autocomplete="current-password"></div>
+        <button id="loginBtn" class="bigBtn primary" style="width:100%">Entrar</button>
+        <div id="loginMsg" class="loginMsg"></div>
+      </div>
+      <div class="smallNote">Visitantes veem apenas a ficha pública dos animais atualmente no abrigo.</div>
+    </div>
+  </div>
+</section>
+
+<section id="app" class="hidden">
+<header><div class="brand"><img src="amor de 4 patas.jpg" alt="Logo Amor de Quatro Patas"><div><h1>Cadastro de Animais</h1><p class="sub" id="modeSubtitle">Amor de Quatro Patas</p><span class="tag" id="modeTag">V3.1</span></div><div class="topActions"><button id="backStart" class="miniBtn">Início</button><button id="logoutBtn" class="miniBtn red hidden">Sair</button></div></div></header>
 <main>
-<div class="toolbar"><input class="search" id="search" placeholder="Buscar nome ou código"><button class="new" id="newAnimal" title="Edição será habilitada na próxima etapa">Entrar</button></div>
-<div id="dbStatus" style="margin:-4px 0 12px;font-size:.78rem;color:var(--muted)">Conectando ao banco…</div>
+<div class="toolbar"><input class="search" id="search" placeholder="Buscar nome ou código"></div>
+<div id="dbStatus" style="margin:-4px 0 12px;font-size:.78rem;color:var(--muted)">Aguardando acesso…</div>
 <div class="summary"><div class="count" id="count"></div><div class="filtersText" id="filtersText">Sem filtros</div></div>
 <section class="grid" id="grid"></section>
 </main>
-<footer>V3 conectada ao banco online. Nesta etapa, o aplicativo faz consulta pública dos cadastros. Cadastro, edição e envio de fotos serão liberados na próxima etapa com login individual.</footer>
+<footer id="footerText">Consulta pública.</footer>
 <div class="bottom"><button class="filterBtn" id="openFilters">Filtrar / ordenar</button></div>
+</section>
+
 <dialog id="animalModal"><div id="animalContent"></div></dialog>
-<dialog id="formModal"><form class="form" id="animalForm"><h2 id="formTitle">Novo animal</h2><p class="help">Poucos campos. O código de 6 dígitos é gerado automaticamente.</p>
-<input type="hidden" id="editId">
-<div class="row"><div class="field"><label>Nome</label><input id="fName" maxlength="60" placeholder="Opcional"></div><div class="field"><label>Código</label><input id="fCode" disabled placeholder="automático"></div></div>
-<div class="row"><div class="field"><label class="req">Espécie</label><select id="fSpecies" required><option value="">Selecione</option><option>Gato</option><option>Cão</option><option>Outro</option></select></div><div class="field"><label class="req">Sexo</label><select id="fSex" required><option value="">Selecione</option><option>Fêmea</option><option>Macho</option><option>Não identificado</option></select></div></div>
-<div class="field" id="otherSpeciesWrap" style="display:none"><label>Qual espécie?</label><input id="fOtherSpecies" maxlength="40"></div>
-<div class="row"><div class="field"><label>Nascimento</label><input id="fBirth" placeholder="2026 ou 14/03/2026"></div><div class="field"><label>Origem</label><select id="fOrigin"><option value="">Não informado</option><option>Resgate</option><option>Rua</option><option>Nascido no abrigo</option><option>Entrega por terceiro</option><option>Outro</option></select></div></div>
-<div class="toggles"><div class="toggleBox"><label>Castrado?</label><select id="fNeutered"><option>Não informado</option><option>Sim</option><option>Não</option></select></div><div class="toggleBox"><label>Vacinado?</label><select id="fVaccinated"><option>Não informado</option><option>Sim</option><option>Não</option></select></div><div class="toggleBox"><label>Vermifugado?</label><select id="fDewormed"><option>Não informado</option><option>Sim</option><option>Não</option></select></div><div class="toggleBox"><label>Internado?</label><select id="fHospitalized"><option>Não</option><option>Sim</option></select></div></div>
-<div class="row"><div class="field"><label>Situação</label><select id="fStatus"><option>No abrigo</option><option>Adotado</option><option>Transferido</option><option>Óbito</option></select></div><div class="field exitWrap hidden" id="exitDateWrap"><label>Data da saída</label><input type="date" id="fExitDate"></div></div>
-<div class="field"><label>Vídeo YouTube</label><input id="fVideo" type="url" placeholder="Opcional"></div>
-<div class="field"><label class="req">Foto</label><input id="fPhoto" type="file" accept="image/*" capture="environment"><div class="fileHint">No cadastro novo, a foto é obrigatória. Em edição, a foto atual pode ser mantida.</div><img class="preview" id="photoPreview" alt="Prévia"></div>
-<div class="field"><label>Observações</label><textarea id="fObs" placeholder="Campo livre para adoção, telefone, tratamento, comportamento, internações, histórico etc."></textarea></div>
-<div class="formActions"><button type="button" class="btn light" id="cancelForm">Cancelar</button><button type="submit" class="btn primary">Salvar</button></div></form></dialog>
-<dialog id="filterModal"><div class="filterSheet"><div class="grab"></div><h2 style="margin:0 0 8px">Filtros</h2><div class="fg"><div class="flabel">Espécie</div><div class="chips" id="speciesChips"></div></div><div class="fg"><div class="flabel">Sexo</div><div class="chips" id="sexChips"></div></div><div class="fg"><div class="flabel">Situação</div><div class="chips" id="statusChips"></div></div><div class="fg"><div class="flabel">Internação</div><div class="chips" id="hospitalChips"></div></div><div class="fg"><div class="flabel">Ordenar</div><select class="full" id="sort"><option value="code">Código</option><option value="name">Nome</option><option value="species">Espécie</option></select></div><button class="btn dark full" id="applyFilters">Ver resultados</button></div></dialog>
+<dialog id="filterModal"><div class="filterSheet"><div class="grab"></div><h2 style="margin:0 0 8px">Filtros</h2><div class="fg"><div class="flabel">Espécie</div><div class="chips" id="speciesChips"></div></div><div class="fg"><div class="flabel">Sexo</div><div class="chips" id="sexChips"></div></div><div class="fg internalOnly hidden"><div class="flabel">Situação</div><div class="chips" id="statusChips"></div></div><div class="fg internalOnly hidden"><div class="flabel">Internação</div><div class="chips" id="hospitalChips"></div></div><div class="fg"><div class="flabel">Ordenar</div><select class="full" id="sort"><option value="code">Código</option><option value="name">Nome</option><option value="species">Espécie</option></select></div><button class="btn dark full" id="applyFilters">Ver resultados</button></div></dialog>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL = 'https://imcvnnvogyrwrnfebopo.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_bNgv425XF07BEtqmq2tT3g_Arsrtsvp';
-const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-
-let animals=[];
-let currentList=[];
-let currentAnimalId=null;
+const SUPABASE_URL='https://imcvnnvogyrwrnfebopo.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_bNgv425XF07BEtqmq2tT3g_Arsrtsvp';
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+let animals=[],currentList=[],currentAnimalId=null,mode=null,role=null;
 const state={species:'Todos',sex:'Todos',status:'Todos',hospital:'Todos',sort:'code'};
-const $=id=>document.getElementById(id);
-const pad=n=>String(n).padStart(6,'0');
-const esc=(s='')=>String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
-const displayName=a=>a.name?.trim()||pad(a.id);
-const yn=v=>v===true?'Sim':v===false?'Não':'Não informado';
-function birthLabel(a){
-  if(a.data_nascimento){const [y,m,d]=a.data_nascimento.split('-'); return `${d}/${m}/${y}`}
-  if(a.ano_nascimento) return `~${a.ano_nascimento}`;
-  return 'Não informado';
-}
-function photoSrc(a){return a.foto_url||''}
-function linkify(text=''){
-  const safe=esc(text);
-  return safe.replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
-}
+const $=id=>document.getElementById(id); const pad=n=>String(n).padStart(6,'0');
+const esc=(s='')=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+const displayName=a=>a.name?.trim()||pad(a.id); const yn=v=>v===true?'Sim':v===false?'Não':'Não informado';
+function birthLabel(a){if(a.data_nascimento){const[y,m,d]=a.data_nascimento.split('-');return`${d}/${m}/${y}`}if(a.ano_nascimento)return`~${a.ano_nascimento}`;return'Não informado'}
+function linkify(text=''){return esc(text).replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>')}
 function uiStatus(db){return db==='Ativo'?'No abrigo':db}
-function mapRow(r){return {...r,code:pad(r.id),status:uiStatus(r.situacao),hospitalized:r.internado?'Sim':'Não',species:r.especie==='Outro'?(r.especie_outro||'Outro'):r.especie,sex:r.sexo,photo:r.foto_url||'',origin:r.origem||'Não informado',neutered:yn(r.castrado),vaccinated:yn(r.vacinado),dewormed:yn(r.vermifugado),exitDate:r.data_saida||'',obs:r.observacoes||'',video:r.youtube_url||''}}
-
-async function loadAnimals(){
-  $('dbStatus').textContent='Conectando ao banco…';
-  const {data,error}=await sb.from('animais').select('*').order('id',{ascending:true});
-  if(error){
-    console.error(error);
-    $('dbStatus').innerHTML='<strong>Não foi possível consultar o banco.</strong> '+esc(error.message);
-    animals=[]; render(); return;
-  }
-  animals=(data||[]).map(mapRow);
-  $('dbStatus').textContent=`Banco online conectado • ${animals.length} cadastro${animals.length===1?'':'s'} carregado${animals.length===1?'':'s'}`;
-  render();
-}
-
-function render(){
-  let q=$('search').value.trim().toLowerCase();
-  let list=animals.filter(a=>(!q||(`${a.name||''} ${a.code}`).toLowerCase().includes(q))&&(state.species==='Todos'||a.species===state.species)&&(state.sex==='Todos'||a.sex===state.sex)&&(state.status==='Todos'||a.status===state.status)&&(state.hospital==='Todos'||a.hospitalized===state.hospital));
-  list.sort((a,b)=>state.sort==='name'?displayName(a).localeCompare(displayName(b),'pt-BR'):state.sort==='species'?a.species.localeCompare(b.species,'pt-BR')||a.id-b.id:a.id-b.id);
-  currentList=list; $('grid').innerHTML='';
-  $('count').textContent=`${list.length} ${list.length===1?'animal':'animais'}`;
-  $('filtersText').textContent=[state.species,state.sex,state.status,state.hospital!=='Todos'?`Internado: ${state.hospital}`:''].filter(x=>x&&x!=='Todos').join(' • ')||'Sem filtros';
-  if(!list.length){$('grid').innerHTML='<div class="empty">Nenhum animal encontrado no banco.</div>';return}
-  list.forEach(a=>{
-    let e=document.createElement('article'); e.className='card';
-    const img=a.photo?`<img src="${esc(a.photo)}" alt="${esc(displayName(a))}" loading="lazy">`:'<div style="aspect-ratio:1/1;display:grid;place-items:center;background:#eee;color:#777">Sem foto</div>';
-    e.innerHTML=`${img}<div class="cardBody"><div class="name">${esc(displayName(a))}</div><div class="meta"><span class="code">${a.code}</span> • ${esc(a.species)} • ${esc(a.sex)}</div><span class="status ${a.status==='Óbito'?'obito':a.hospitalized==='Sim'?'internado':'abrigo'}">${a.hospitalized==='Sim'?'Internado':esc(a.status)}</span></div>`;
-    e.onclick=()=>openAnimal(a.id); $('grid').appendChild(e);
-  });
-}
-function openAnimal(id){
-  let a=animals.find(x=>x.id===id); if(!a)return; currentAnimalId=id;
-  let idx=currentList.findIndex(x=>x.id===id),hasPrev=idx>0,hasNext=idx>=0&&idx<currentList.length-1;
-  const img=a.photo?`<img class="sheetImg" src="${esc(a.photo)}" alt="${esc(displayName(a))}">`:'<div class="sheetImg" style="display:grid;place-items:center;color:#777">Sem foto</div>';
-  const yt=a.video?`<div class="line"><a href="${esc(a.video)}" target="_blank" rel="noopener noreferrer">Abrir vídeo no YouTube</a></div>`:'';
-  $('animalContent').innerHTML=`${img}<div class="sheet"><h2>${esc(displayName(a))}</h2><div class="line"><span class="code">${a.code}</span> • ${esc(a.species)} • ${esc(a.sex)}</div><div class="pills"><span class="pill">Nascimento: ${esc(birthLabel(a))}</span><span class="pill">Origem: ${esc(a.origin)}</span><span class="pill">Castrado: ${esc(a.neutered)}</span><span class="pill">Vacinado: ${esc(a.vaccinated)}</span><span class="pill">Vermifugado: ${esc(a.dewormed)}</span><span class="pill">Internado: ${esc(a.hospitalized)}</span><span class="pill">Situação: ${esc(a.status)}</span></div>${a.exitDate?`<div class="line"><strong>Data da saída:</strong> ${esc(a.exitDate)}</div>`:''}${a.obs?`<div class="obs"><strong>Observações</strong><br>${linkify(a.obs)}</div>`:''}${yt}<div class="navRow"><button class="btn light" ${hasPrev?'':'disabled'} onclick="navigateAnimal(-1)">← Anterior</button><button class="btn light" ${hasNext?'':'disabled'} onclick="navigateAnimal(1)">Próximo →</button></div><div class="actions"><button class="btn dark" onclick="$('animalModal').close()">Fechar</button></div></div>`;
-  $('animalModal').showModal();
-}
+function mapRow(r){return {...r,code:pad(r.id),name:r.nome,species:r.especie==='Outro'?(r.especie_outro||'Outro'):r.especie,sex:r.sexo,photo:r.foto_url||'',video:r.youtube_url||'',status:uiStatus(r.situacao),hospitalized:r.internado?'Sim':'Não',origin:r.origem||'Não informado',neutered:yn(r.castrado),vaccinated:yn(r.vacinado),dewormed:yn(r.vermifugado),exitDate:r.data_saida||'',obs:r.observacoes||''}}
+function resetFilters(){Object.assign(state,{species:'Todos',sex:'Todos',status:'Todos',hospital:'Todos',sort:'code'});$('search').value='';}
+function setScreen(which){$('welcome').classList.toggle('hidden',which!=='welcome');$('app').classList.toggle('hidden',which!=='app')}
+async function enterVisitor(){mode='visitor';role=null;resetFilters();$('logoutBtn').classList.add('hidden');document.querySelectorAll('.internalOnly').forEach(x=>x.classList.add('hidden'));$('modeSubtitle').textContent='Consulta pública dos animais no abrigo';$('modeTag').textContent='VISITANTE';$('footerText').textContent='Área pública: identificação básica e vídeo, quando disponível.';setScreen('app');renderFilters();await loadAnimals();}
+async function doLogin(){const email=$('loginEmail').value.trim(),password=$('loginPassword').value;$('loginMsg').textContent='Entrando…';const{data,error}=await sb.auth.signInWithPassword({email,password});if(error){$('loginMsg').textContent='Não foi possível entrar: '+error.message;return}const uid=data.user.id;const{data:perfil,error:pErr}=await sb.from('perfis').select('papel,ativo').eq('id',uid).single();if(pErr||!perfil||!perfil.ativo){await sb.auth.signOut();$('loginMsg').textContent='Este usuário não está autorizado a acessar a área interna.';return}mode='internal';role=perfil.papel;resetFilters();$('loginMsg').textContent='';$('logoutBtn').classList.remove('hidden');document.querySelectorAll('.internalOnly').forEach(x=>x.classList.remove('hidden'));$('modeSubtitle').textContent=`Área interna • ${role==='admin'?'Administrador':'Editor'}`;$('modeTag').textContent=role==='admin'?'ADMIN':'EDITOR';$('footerText').textContent='Área interna: ficha completa. Cadastro e edição serão habilitados na próxima etapa.';setScreen('app');renderFilters();await loadAnimals();}
+async function loadAnimals(){$('dbStatus').textContent='Conectando ao banco…';const source=mode==='internal'?'animais':'animais_publicos';const{data,error}=await sb.from(source).select('*').order('id',{ascending:true});if(error){console.error(error);$('dbStatus').innerHTML='<strong>Não foi possível consultar o banco.</strong> '+esc(error.message);animals=[];render();return}animals=(data||[]).map(mapRow);$('dbStatus').textContent=`Banco online conectado • ${animals.length} cadastro${animals.length===1?'':'s'} carregado${animals.length===1?'':'s'}`;render();}
+function render(){let q=$('search').value.trim().toLowerCase();let list=animals.filter(a=>(!q||(`${a.name||''} ${a.code}`).toLowerCase().includes(q))&&(state.species==='Todos'||a.species===state.species)&&(state.sex==='Todos'||a.sex===state.sex)&&(mode!=='internal'||state.status==='Todos'||a.status===state.status)&&(mode!=='internal'||state.hospital==='Todos'||a.hospitalized===state.hospital));list.sort((a,b)=>state.sort==='name'?displayName(a).localeCompare(displayName(b),'pt-BR'):state.sort==='species'?a.species.localeCompare(b.species,'pt-BR')||a.id-b.id:a.id-b.id);currentList=list;$('grid').innerHTML='';$('count').textContent=`${list.length} ${list.length===1?'animal':'animais'}`;let ft=[state.species,state.sex];if(mode==='internal')ft.push(state.status,state.hospital!=='Todos'?`Internado: ${state.hospital}`:'');$('filtersText').textContent=ft.filter(x=>x&&x!=='Todos').join(' • ')||'Sem filtros';if(!list.length){$('grid').innerHTML='<div class="empty">Nenhum animal encontrado.</div>';return}list.forEach(a=>{let e=document.createElement('article');e.className='card';const img=a.photo?`<img src="${esc(a.photo)}" alt="${esc(displayName(a))}" loading="lazy">`:'<div style="aspect-ratio:1/1;display:grid;place-items:center;background:#eee;color:#777">Sem foto</div>';e.innerHTML=`${img}<div class="cardBody"><div class="name">${esc(displayName(a))}</div><div class="meta"><span class="code">${a.code}</span> • ${esc(a.species)} • ${esc(a.sex)}</div>${mode==='internal'?`<span class="status">${a.hospitalized==='Sim'?'Internado':esc(a.status)}</span>`:''}</div>`;e.onclick=()=>openAnimal(a.id);$('grid').appendChild(e)})}
+function openAnimal(id){let a=animals.find(x=>x.id===id);if(!a)return;currentAnimalId=id;let idx=currentList.findIndex(x=>x.id===id),hasPrev=idx>0,hasNext=idx>=0&&idx<currentList.length-1;const img=a.photo?`<img class="sheetImg" src="${esc(a.photo)}" alt="${esc(displayName(a))}">`:'<div class="sheetImg" style="display:grid;place-items:center;color:#777">Sem foto</div>';const yt=a.video?`<div class="line"><a href="${esc(a.video)}" target="_blank" rel="noopener noreferrer">Abrir vídeo no YouTube</a></div>`:'';let detail=`<div class="pills"><span class="pill">Nascimento: ${esc(birthLabel(a))}</span></div>${yt}`;if(mode==='internal'){detail=`<div class="pills"><span class="pill">Nascimento: ${esc(birthLabel(a))}</span><span class="pill">Origem: ${esc(a.origin)}</span><span class="pill">Castrado: ${esc(a.neutered)}</span><span class="pill">Vacinado: ${esc(a.vaccinated)}</span><span class="pill">Vermifugado: ${esc(a.dewormed)}</span><span class="pill">Internado: ${esc(a.hospitalized)}</span><span class="pill">Situação: ${esc(a.status)}</span></div>${a.exitDate?`<div class="line"><strong>Data da saída:</strong> ${esc(a.exitDate)}</div>`:''}${a.obs?`<div class="obs"><strong>Observações</strong><br>${linkify(a.obs)}</div>`:''}${yt}`}
+$('animalContent').innerHTML=`${img}<div class="sheet"><h2>${esc(displayName(a))}</h2><div class="line"><span class="code">${a.code}</span> • ${esc(a.species)} • ${esc(a.sex)}</div>${detail}<div class="navRow"><button class="btn light" ${hasPrev?'':'disabled'} onclick="navigateAnimal(-1)">← Anterior</button><button class="btn light" ${hasNext?'':'disabled'} onclick="navigateAnimal(1)">Próximo →</button></div><div class="actions"><button class="btn dark" onclick="document.getElementById('animalModal').close()">Fechar</button></div></div>`;$('animalModal').showModal()}
 window.navigateAnimal=dir=>{let idx=currentList.findIndex(x=>x.id===currentAnimalId);let next=currentList[idx+dir];if(next)openAnimal(next.id)};
 function chips(container,opts,key){$(container).innerHTML='';opts.forEach(o=>{let b=document.createElement('button');b.className='chip'+(state[key]===o?' active':'');b.textContent=o;b.onclick=()=>{state[key]=o;renderFilters();render()};$(container).appendChild(b)})}
-function renderFilters(){chips('speciesChips',['Todos','Gato','Cão'],'species');chips('sexChips',['Todos','Fêmea','Macho'],'sex');chips('statusChips',['Todos','No abrigo','Adotado','Transferido','Óbito'],'status');chips('hospitalChips',['Todos','Sim','Não'],'hospital');$('sort').value=state.sort}
-$('openFilters').onclick=()=>$('filterModal').showModal();
-$('applyFilters').onclick=()=>$('filterModal').close();
-$('sort').onchange=e=>{state.sort=e.target.value;render()};
-$('search').oninput=render;
-$('newAnimal').onclick=()=>alert('Login e edição entram na próxima etapa. Nesta V3 estamos testando a consulta pública do banco online.');
-['animalModal','filterModal'].forEach(id=>$(id).addEventListener('click',e=>{if(e.target===$(id))$(id).close()}));
-// O formulário local continua no HTML apenas como base visual para a próxima etapa, mas fica inacessível nesta V3.
-if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js'));
-renderFilters();
-loadAnimals();
-</script></body></html>
+function renderFilters(){chips('speciesChips',['Todos','Gato','Cão'],'species');chips('sexChips',['Todos','Fêmea','Macho'],'sex');if(mode==='internal'){chips('statusChips',['Todos','No abrigo','Adotado','Transferido','Óbito'],'status');chips('hospitalChips',['Todos','Sim','Não'],'hospital')}$('sort').value=state.sort}
+$('visitorBtn').onclick=enterVisitor;$('showLoginBtn').onclick=()=>$('loginBox').classList.toggle('hidden');$('loginBtn').onclick=doLogin;$('loginPassword').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});$('openFilters').onclick=()=>$('filterModal').showModal();$('applyFilters').onclick=()=>$('filterModal').close();$('sort').onchange=e=>{state.sort=e.target.value;render()};$('search').oninput=render;$('backStart').onclick=async()=>{if(mode==='internal')await sb.auth.signOut();mode=null;role=null;animals=[];setScreen('welcome')};$('logoutBtn').onclick=async()=>{await sb.auth.signOut();mode=null;role=null;animals=[];$('loginPassword').value='';setScreen('welcome')};['animalModal','filterModal'].forEach(id=>$(id).addEventListener('click',e=>{if(e.target===$(id))$(id).close()}));
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js'));
+(async()=>{const{data:{session}}=await sb.auth.getSession();if(session){$('loginEmail').value=session.user.email||'';$('loginBox').classList.remove('hidden')}})();
+</script>
+</body></html>
